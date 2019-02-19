@@ -30,18 +30,16 @@ public class TondeuseServiceTest extends TestCase
         mapTondeuse.put(new Tondeuse(1, 2, "N"), "GAGAGAGAA");
         mapTondeuse.put(new Tondeuse(3, 3, "E"), "AADAADADDA");
         assertEquals("1 3 N \n" + 
-        		"5 1 N \n",this.tondeuseService.lancementTondeuse(mapTondeuse, xMax, yMax));
+        		"5 1 E \n",this.tondeuseService.lancementTondeuse(mapTondeuse, xMax, yMax));
 	}
 	@Test
-	public void test_lancement_Tondeuse_sur_cas_occupee() {
+	public void test_lancement_Tondeuse_sur_case_occupee() {
         Integer xMax = 5;
         Integer yMax = 5;
         LinkedHashMap<Tondeuse, String> mapTondeuse = new LinkedHashMap<Tondeuse, String>();
         mapTondeuse.put(new Tondeuse(1, 2, "N"), "GAGAGAGAA");
-        mapTondeuse.put(new Tondeuse(3, 3, "E"), "AADAADADDA");
-        mapTondeuse.put(new Tondeuse(1, 3, "S"), "A");
+        mapTondeuse.put(new Tondeuse(1, 4, "S"), "A");
         assertEquals("1 3 N \n" + 
-        		"5 1 N \n" + 
-        		"1 3 S \n",this.tondeuseService.lancementTondeuse(mapTondeuse, xMax, yMax));
+        		"1 4 S \n",this.tondeuseService.lancementTondeuse(mapTondeuse, xMax, yMax));
 	}
 }

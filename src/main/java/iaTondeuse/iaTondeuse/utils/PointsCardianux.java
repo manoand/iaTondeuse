@@ -2,16 +2,16 @@ package iaTondeuse.iaTondeuse.utils;
 
 public enum PointsCardianux {
 	N("E","O"),
-	E("N","S"),
+	E("S","N"),
 	S("O","E"),
-	O("S","N");
+	O("N","S");
 	
 	private String gauche;
 	private String droite;
 
-	private PointsCardianux(String gauche,String droite) {
-		this.gauche = gauche;
+	private PointsCardianux(String droite,String gauche) {
 		this.droite = droite;
+		this.gauche = gauche;
 	}
 
 	public String getGauche() {
@@ -22,25 +22,4 @@ public enum PointsCardianux {
 		return droite;
 	}
 
-	static public PointsCardianux getPointCardinal(String lettre) {
-		PointsCardianux res = null;
-		switch (lettre) {
-		case "N":
-			res = N;
-			break;
-		case "S":
-			res = S;
-			break;
-		case "E":
-			res=E;
-			break;
-		case "O":
-			res=O;
-			break;
-		default:
-			break;
-		}
-		return res;
-		
-	}
 }

@@ -16,19 +16,19 @@ public class TondeuseService {
 	public String lancementTondeuse(  LinkedHashMap<Tondeuse, String> mapTondeuse,Integer xMax,Integer yMax) {
 		StringBuilder res = new StringBuilder();
 		for (Tondeuse tondeuse : mapTondeuse.keySet()) {
-        	String nouvelleDirection = tondeuse.getDirenction();
+			String nouvelleDirection = tondeuse.getDirenction();
         	for(char instruction : mapTondeuse.get(tondeuse).toCharArray()) {
         		Integer xTmp = tondeuse.getCoordonnees().getX();
         		Integer yTmp = tondeuse.getCoordonnees().getY();
         		switch (instruction) {
 				case 'D':
-					nouvelleDirection = PointsCardianux.getPointCardinal(nouvelleDirection).getGauche().toString();
+					nouvelleDirection = PointsCardianux.valueOf(nouvelleDirection).getDroite().toString();
 					break;
 				case 'G':
-					nouvelleDirection = PointsCardianux.getPointCardinal(nouvelleDirection).getDroite().toString();
+					nouvelleDirection = PointsCardianux.valueOf(nouvelleDirection).getGauche().toString();
 					break;
 				case 'A' :
-					deplacementTondeuse(mapTondeuse, tondeuse, nouvelleDirection, xTmp, yTmp, xMax, yMax);
+					nouvelleDirection = deplacementTondeuse(mapTondeuse, tondeuse, nouvelleDirection, xTmp, yTmp, xMax, yMax);
 					break;
 				default:
 					break;
@@ -43,7 +43,7 @@ public class TondeuseService {
     	return mapTondeuse.keySet().stream().map(Tondeuse :: getCoordonnees).collect(Collectors.toList()).contains(coordonnees);
     }
     
-    private void deplacementTondeuse(LinkedHashMap<Tondeuse, String> mapTondeuse,Tondeuse tondeuse,String nouvelleDirection,Integer xTmp,Integer yTmp,Integer xMax,Integer yMax) {
+    private String deplacementTondeuse(LinkedHashMap<Tondeuse, String> mapTondeuse,Tondeuse tondeuse,String nouvelleDirection,Integer xTmp,Integer yTmp,Integer xMax,Integer yMax) {
     	switch (nouvelleDirection) {
 		case "N":
 			yTmp+=1;
@@ -67,5 +67,6 @@ public class TondeuseService {
 		}else {
 			nouvelleDirection = tondeuse.getDirenction();
 		}
+		return nouvelleDirection;
     }
 }

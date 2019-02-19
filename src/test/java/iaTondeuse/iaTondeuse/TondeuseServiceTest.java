@@ -17,11 +17,13 @@ public class TondeuseServiceTest extends TestCase
 {
 
 	private TondeuseService tondeuseService;
+	
     @Override
     protected void setUp() throws Exception
     {
     	this.tondeuseService = new TondeuseService();
     }
+    
 	@Test
 	public void test_lancement_2_Tondeuses() {
         Integer xMax = 5;

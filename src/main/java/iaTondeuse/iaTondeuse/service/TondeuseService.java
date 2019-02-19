@@ -44,6 +44,7 @@ public class TondeuseService {
     }
     
     private String deplacementTondeuse(LinkedHashMap<Tondeuse, String> mapTondeuse,Tondeuse tondeuse,String nouvelleDirection,Integer xTmp,Integer yTmp,Integer xMax,Integer yMax) {
+    	String res = nouvelleDirection;
     	switch (nouvelleDirection) {
 		case "N":
 			yTmp+=1;
@@ -65,8 +66,8 @@ public class TondeuseService {
 			tondeuse.setCoordonnees(coordonneesTmp);
 			tondeuse.setDirection(nouvelleDirection);
 		}else {
-			nouvelleDirection = tondeuse.getDirenction();
+			res = tondeuse.getDirenction();
 		}
-		return nouvelleDirection;
+		return res;
     }
 }

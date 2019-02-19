@@ -7,6 +7,7 @@ import iaTondeuse.iaTondeuse.model.Chainon;
 import iaTondeuse.iaTondeuse.model.Coordonnees;
 import iaTondeuse.iaTondeuse.model.ListDoublementChainee;
 import iaTondeuse.iaTondeuse.model.Tondeuse;
+import iaTondeuse.iaTondeuse.service.TondeuseService;
 
 
 public class App 
@@ -39,53 +40,11 @@ public class App
         mapTondeuse.put(new Tondeuse(3, 3, "E"), "AADAADADDA");
         mapTondeuse.put(new Tondeuse(1, 3, "S"), "A");
         
-        for (Tondeuse tondeuse : mapTondeuse.keySet()) {
-        	String nouvelleDirection = tondeuse.getDirenction();
-        	for(char instruction : mapTondeuse.get(tondeuse).toCharArray()) {
-        		Integer xTmp = tondeuse.getCoordonnees().getX();
-        		Integer yTmp = tondeuse.getCoordonnees().getY();
-        		switch (instruction) {
-				case 'D':
-					nouvelleDirection = listDoublementChainee.getChainon(nouvelleDirection).getSuivant().getElement();
-					break;
-				case 'G':
-					nouvelleDirection = listDoublementChainee.getChainon(nouvelleDirection).getPrecedent().getElement();
-					break;
-				case 'A' :
-					switch (nouvelleDirection) {
-					case "N":
-						yTmp+=1;
-						break;
-					case "E":
-						xTmp+=1;
-						break;
-					case "S":
-						yTmp-=1;
-						break;
-					case "O":
-						xTmp-=1;
-						break;	
-					default:
-						break;
-					}
-					Coordonnees coordonneesTmp = new Coordonnees(xTmp, yTmp);
-					if(xTmp !=0 && yTmp !=0 && xTmp<=xMax && yTmp <= yMax && !mapContainsCoordonnes(mapTondeuse, coordonneesTmp)) {
-						tondeuse.setCoordonnees(coordonneesTmp);
-						tondeuse.setDirection(nouvelleDirection);
-					}else {
-						nouvelleDirection = tondeuse.getDirenction();
-					}
-					break;
-				default:
-					break;
-				}
-        	}
-        	System.out.println(tondeuse.toString());
-        }
+        TondeuseService tondeuseService = new TondeuseService(); 
+        System.out.println(tondeuseService.lancementTondeuse(mapTondeuse, xMax, yMax));
 
     }
     
-    static boolean mapContainsCoordonnes(LinkedHashMap<Tondeuse, String> mapTondeuse, Coordonnees coordonnees) {
-    	return mapTondeuse.keySet().stream().map(Tondeuse :: getCoordonnees).collect(Collectors.toList()).contains(coordonnees);
-    }
+
+    
 }

@@ -16,6 +16,9 @@ public class Coordonnees {
 		this.y = y;
 	}
 	
+	public Coordonnees() {
+		super();
+	}
 	
 	public Coordonnees(Integer x, Integer y) {
 		super();

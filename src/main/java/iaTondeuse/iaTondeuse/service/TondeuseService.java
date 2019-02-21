@@ -6,14 +6,17 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import iaTondeuse.iaTondeuse.model.Coordonnees;
+import iaTondeuse.iaTondeuse.model.InitParam;
 import iaTondeuse.iaTondeuse.model.Tondeuse;
 import iaTondeuse.iaTondeuse.utils.PointsCardianux;
 
 @Service
 public class TondeuseService {
 
-	public String lancementTondeuse(  LinkedHashMap<Tondeuse, String> mapTondeuse,Integer xMax,Integer yMax) {
+	public String lancementTondeuse( InitParam initParam) {
 		StringBuilder res = new StringBuilder();
+		LinkedHashMap<Tondeuse, String> mapTondeuse = initParam.getMapTondeuse();
+		Coordonnees coordMax = initParam.getCoordMax();
 		for (Tondeuse tondeuse : mapTondeuse.keySet()) {
 			String nouvelleDirection = tondeuse.getDirenction();
         	for(char instruction : mapTondeuse.get(tondeuse).toCharArray()) {
@@ -27,7 +30,7 @@ public class TondeuseService {
 					nouvelleDirection = PointsCardianux.valueOf(nouvelleDirection).getGauche().toString();
 					break;
 				case 'A' :
-					nouvelleDirection = deplacementTondeuse(mapTondeuse, tondeuse, nouvelleDirection, xTmp, yTmp, xMax, yMax);
+					nouvelleDirection = deplacementTondeuse(mapTondeuse, tondeuse, nouvelleDirection, xTmp, yTmp, coordMax.getX(), coordMax.getY());
 					break;
 				default:
 					break;

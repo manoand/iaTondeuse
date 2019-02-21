@@ -20,8 +20,7 @@ public class TondeuseService {
 		for (Tondeuse tondeuse : mapTondeuse.keySet()) {
 			String nouvelleDirection = tondeuse.getDirenction();
         	for(char instruction : mapTondeuse.get(tondeuse).toCharArray()) {
-        		Integer xTmp = tondeuse.getCoordonnees().getX();
-        		Integer yTmp = tondeuse.getCoordonnees().getY();
+        		Coordonnees coordTmp = new Coordonnees(tondeuse.getCoordonnees().getX(),tondeuse.getCoordonnees().getY());
         		switch (instruction) {
 				case 'D':
 					nouvelleDirection = PointsCardianux.valueOf(nouvelleDirection).getDroite().toString();
@@ -30,7 +29,7 @@ public class TondeuseService {
 					nouvelleDirection = PointsCardianux.valueOf(nouvelleDirection).getGauche().toString();
 					break;
 				case 'A' :
-					nouvelleDirection = deplacementTondeuse(mapTondeuse, tondeuse, nouvelleDirection, xTmp, yTmp, coordMax.getX(), coordMax.getY());
+					nouvelleDirection = deplacementTondeuse(mapTondeuse, tondeuse, nouvelleDirection, coordTmp, coordMax);
 					break;
 				default:
 					break;
@@ -45,27 +44,27 @@ public class TondeuseService {
     	return mapTondeuse.keySet().stream().map(Tondeuse :: getCoordonnees).collect(Collectors.toList()).contains(coordonnees);
     }
     
-    private String deplacementTondeuse(LinkedHashMap<Tondeuse, String> mapTondeuse,Tondeuse tondeuse,String nouvelleDirection,Integer xTmp,Integer yTmp,Integer xMax,Integer yMax) {
+    private String deplacementTondeuse(LinkedHashMap<Tondeuse, String> mapTondeuse,Tondeuse tondeuse,String nouvelleDirection,Coordonnees coordTmp,Coordonnees coordMax) {
     	String res = nouvelleDirection;
     	switch (nouvelleDirection) {
 		case "N":
-			yTmp+=1;
+			coordTmp.setY(coordTmp.getY()+1);
 			break;
 		case "E":
-			xTmp+=1;
+			coordTmp.setX(coordTmp.getX()+1);
 			break;
 		case "S":
-			yTmp-=1;
+			coordTmp.setY(coordTmp.getY()-1);
 			break;
 		case "O":
-			xTmp-=1;
+			coordTmp.setX(coordTmp.getX()-1);
 			break;	
 		default:
 			break;
 		}
-		Coordonnees coordonneesTmp = new Coordonnees(xTmp, yTmp);
-		if(xTmp !=0 && yTmp !=0 && xTmp<=xMax && yTmp <= yMax && !mapContainsCoordonnes(mapTondeuse, coordonneesTmp)) {
-			tondeuse.setCoordonnees(coordonneesTmp);
+		if(coordTmp.getX() !=0 && coordTmp.getY() !=0 && coordTmp.getX()<=coordMax.getX() && coordTmp.getY() <= coordMax.getY() 
+				&& !mapContainsCoordonnes(mapTondeuse, coordTmp)) {
+			tondeuse.setCoordonnees(coordTmp);
 			tondeuse.setDirection(nouvelleDirection);
 		}else {
 			res = tondeuse.getDirenction();

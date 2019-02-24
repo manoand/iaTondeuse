@@ -40,11 +40,11 @@ public class TondeuseService {
 		return res.toString();
 	}
 	
-    private boolean mapContainsCoordonnes(LinkedHashMap<Tondeuse, String> mapTondeuse, Coordonnees coordonnees) {
+    boolean mapContainsCoordonnes(LinkedHashMap<Tondeuse, String> mapTondeuse, Coordonnees coordonnees) {
     	return mapTondeuse.keySet().stream().map(Tondeuse :: getCoordonnees).collect(Collectors.toList()).contains(coordonnees);
     }
     
-    private String deplacementTondeuse(LinkedHashMap<Tondeuse, String> mapTondeuse,Tondeuse tondeuse,String nouvelleDirection,Coordonnees coordTmp,Coordonnees coordMax) {
+    String deplacementTondeuse(LinkedHashMap<Tondeuse, String> mapTondeuse,Tondeuse tondeuse,String nouvelleDirection,Coordonnees coordTmp,Coordonnees coordMax) {
     	String res = nouvelleDirection;
     	switch (nouvelleDirection) {
 		case "N":

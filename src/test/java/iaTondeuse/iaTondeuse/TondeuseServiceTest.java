@@ -48,4 +48,5 @@ public class TondeuseServiceTest extends TestCase
         assertEquals("1 3 N \n" + 
         		"1 4 S \n",this.tondeuseService.lancementTondeuse(initParam));
 	}
+
 }

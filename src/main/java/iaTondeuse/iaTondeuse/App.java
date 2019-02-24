@@ -1,10 +1,6 @@
 package iaTondeuse.iaTondeuse;
 
-import java.util.LinkedHashMap;
-
-import iaTondeuse.iaTondeuse.model.Coordonnees;
 import iaTondeuse.iaTondeuse.model.InitParam;
-import iaTondeuse.iaTondeuse.model.Tondeuse;
 import iaTondeuse.iaTondeuse.service.TondeuseService;
 import iaTondeuse.iaTondeuse.utils.FileTestUtils;
 

@@ -1,4 +1,4 @@
-package iaTondeuse.iaTondeuse.utils;
+package iaTondeuse.iaTondeuse.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,16 +6,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 
-import org.springframework.stereotype.Service;
-
 import iaTondeuse.iaTondeuse.model.Coordonnees;
 import iaTondeuse.iaTondeuse.model.InitParam;
 import iaTondeuse.iaTondeuse.model.Tondeuse;
 
-@Service
-public class FileTestUtils {
+public class FileService {
 
-	public InitParam readFileTest() {
+	public InitParam readFile() {
 		LinkedHashMap<Tondeuse, String> mapTondeuse =  new LinkedHashMap<Tondeuse, String>();
 		InitParam initParam = new InitParam(mapTondeuse, new Coordonnees(0,0));
 		InputStream inputStream = getClass().getResourceAsStream("/test.txt");

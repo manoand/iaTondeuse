@@ -3,12 +3,10 @@ package iaTondeuse.iaTondeuse.service;
 import java.util.LinkedHashMap;
 
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import iaTondeuse.iaTondeuse.model.Coordonnees;
 import iaTondeuse.iaTondeuse.model.InitParam;
 import iaTondeuse.iaTondeuse.model.Tondeuse;
-import iaTondeuse.iaTondeuse.utils.FileTestUtils;
 import junit.framework.TestCase;
 
 public class TondeuseServiceTestUni extends TestCase {

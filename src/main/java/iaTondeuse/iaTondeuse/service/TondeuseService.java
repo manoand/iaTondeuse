@@ -3,14 +3,11 @@ package iaTondeuse.iaTondeuse.service;
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Service;
-
 import iaTondeuse.iaTondeuse.model.Coordonnees;
 import iaTondeuse.iaTondeuse.model.InitParam;
 import iaTondeuse.iaTondeuse.model.Tondeuse;
 import iaTondeuse.iaTondeuse.utils.PointsCardianux;
 
-@Service
 public class TondeuseService {
 
 	public String lancementTondeuse( InitParam initParam) {

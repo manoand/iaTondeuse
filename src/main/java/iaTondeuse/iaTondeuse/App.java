@@ -1,16 +1,16 @@
 package iaTondeuse.iaTondeuse;
 
 import iaTondeuse.iaTondeuse.model.InitParam;
+import iaTondeuse.iaTondeuse.service.FileService;
 import iaTondeuse.iaTondeuse.service.TondeuseService;
-import iaTondeuse.iaTondeuse.utils.FileTestUtils;
 
 
 public class App 
 {
     public static void main( String[] args )
     {        
-    	FileTestUtils fileTestUtils = new FileTestUtils();
-        InitParam initParam = fileTestUtils.readFileTest();
+    	FileService fileTestUtils = new FileService();
+        InitParam initParam = fileTestUtils.readFile();
         TondeuseService tondeuseService = new TondeuseService(); 
         System.out.println(tondeuseService.lancementTondeuse(initParam));
     }
